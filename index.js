@@ -1,10 +1,30 @@
-const drivers = ['Antonia', 'Nuru', 'Amari', 'Mo'];
+// 1. returnFirstTwoDrivers — accepts an array parameter
+const returnFirstTwoDrivers = function(arrayOfDrivers) {
+  return arrayOfDrivers.slice(0, 2);
+};
 
-console.log(returnFirstTwoDrivers(drivers)); // ['Antonia', 'Nuru']
-console.log(returnLastTwoDrivers(drivers));  // ['Amari', 'Mo']
+// 2. returnLastTwoDrivers — accepts an array parameter
+const returnLastTwoDrivers = function(arrayOfDrivers) {
+  return arrayOfDrivers.slice(-2);
+};
 
-console.log(fareDoubler(10)); // 20
-console.log(fareTripler(10)); // 30
+// 3. selectingDrivers — an array of the two functions
+const selectingDrivers = [returnFirstTwoDrivers, returnLastTwoDrivers];
 
-console.log(selectDifferentDrivers(drivers, returnFirstTwoDrivers)); // ['Antonia', 'Nuru']
-console.log(selectDifferentDrivers(drivers, returnLastTwoDrivers));  // ['Amari', 'Mo']
+// 4. createFareMultiplier — higher-order function
+function createFareMultiplier(multiplier) {
+  return function(fare) {
+    return fare * multiplier;
+  };
+}
+
+// 5. fareDoubler — uses createFareMultiplier to double fares
+const fareDoubler = createFareMultiplier(2);
+
+// 6. fareTripler — uses createFareMultiplier to triple fares
+const fareTripler = createFareMultiplier(3);
+
+// 7. selectDifferentDrivers — applies a given function to the driver array
+function selectDifferentDrivers(arrayOfDrivers, driverSelector) {
+  return driverSelector(arrayOfDrivers);
+}
